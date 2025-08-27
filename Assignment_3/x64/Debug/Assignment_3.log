@@ -1,0 +1,17 @@
+﻿  Assignment_3.cpp
+C:\Users\PC_1M\Desktop\Assignment_3\Assignment_3\Assignment_3.cpp(356,40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+      C:\Users\PC_1M\Desktop\Assignment_3\Assignment_3\Assignment_3.cpp(356,40):
+      the template instantiation context (the oldest one first) is
+          C:\Users\PC_1M\Desktop\Assignment_3\Assignment_3\Assignment_3.cpp(461,25):
+          see reference to class template instantiation 'Inventory<Resource>' being compiled
+          C:\Users\PC_1M\Desktop\Assignment_3\Assignment_3\Assignment_3.cpp(343,17):
+          while compiling class template member function 'bool Inventory<Resource>::isAlphabeticallyHigher(T *,T *)'
+          with
+          [
+              T=Resource
+          ]
+              C:\Users\PC_1M\Desktop\Assignment_3\Assignment_3\Assignment_3.cpp(427,37):
+              see the first reference to 'Inventory<Resource>::isAlphabeticallyHigher' in 'Inventory<Resource>::SortInventory::<lambda_3>::operator ()'
+  
+C:\Users\PC_1M\Desktop\Assignment_3\Assignment_3\Assignment_3.cpp(360,40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Assignment_3.vcxproj -> C:\Users\PC_1M\Desktop\Assignment_3\x64\Debug\Assignment_3.exe
