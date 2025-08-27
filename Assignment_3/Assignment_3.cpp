@@ -219,7 +219,7 @@ public:
 
             while (isloop == true)// in case of invalid input is detected, so that it can try again
             {
-                cout << this->inventory_name <<"ÀÇ ÀÎº¥Åä¸®°¡ ²Ë Ã¡½À´Ï´Ù. ÀÎº¥Åä¸®¸¦ È®ÀåÇÏ½Ã°Ú½À´Ï±î? (Y/N): ";
+                cout << this->inventory_name <<"ì˜ ì¸ë²¤í† ë¦¬ê°€ ê½‰ ì°¼ìŠµë‹ˆë‹¤. ì¸ë²¤í† ë¦¬ë¥¼ í™•ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N): ";
                 cin >> input;
                 if (input == 'Y' || input == 'y')
                 {
@@ -234,12 +234,12 @@ public:
                 }
                 else if (input == 'N' || input == 'n')
                 {
-                    cout << this->inventory_name << "ÀÇ ÀÎº¥Åä¸®°¡ ²ËÃ¡½À´Ï´Ù. ¾ÆÀÌÅÛÀ» ³ÖÀ» ¼ö ¾ø½À´Ï´Ù." << endl;
+                    cout << this->inventory_name << "ì˜ ì¸ë²¤í† ë¦¬ê°€ ê½‰ì°¼ìŠµë‹ˆë‹¤. ì•„ì´í…œì„ ë„£ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
                     isloop = false;// leave loop
                 }
                 else
                 {
-                    cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ÁøÇàÇØÁÖ½Ê¼î." << endl;
+                    cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì§„í–‰í•´ì£¼ì‹­ì‡¼." << endl;
                     // isloop = true;// stuck in loop // no need for reasigning value
                 }
             }
@@ -250,12 +250,12 @@ public:
     {
         if (new_max_capacity > this->max_capacity)// if expending
         {
-            this->T_itemsPtr.resize(new_max_capacity);// resize the inventory first
+            this->T_itemsPtr.reserve(new_max_capacity);// resize the inventory first// !!!!!!! this was causing the nullptr problem!!!!! needs to be reserve not resize!!!! it fills new space with nullptr!!!!! FUCK
             this->max_capacity = new_max_capacity;// set new capacity
         }
         else if (new_max_capacity == this->max_capacity)//no change
         {
-            cout << this->inventory_name << "ÀÇ ÀÎº¥Åä¸® ¿ë·®¿¡ º¯È­°¡ ¾ø½À´Ï´Ù."; PrintOutStatus();
+            cout << this->inventory_name << "ì˜ ì¸ë²¤í† ë¦¬ ìš©ëŸ‰ì— ë³€í™”ê°€ ì—†ìŠµë‹ˆë‹¤."; PrintOutStatus();
         }
         else// if new capacity is smaller than the current max capacity
         {
@@ -264,7 +264,7 @@ public:
 
             while (isloop == true)
             {
-                cout << this->inventory_name << "ÀÇ ÀÎº¥Åä¸®ÀÇ ¿ë·®À» ÁÙÀÌ¸é ¾ÆÀÌÅÛÀÌ »ç¶óÁı´Ï´Ù. ÁøÇàÇÏ½Ã°Ú½À´Ï±î? (Y/N): ";
+                cout << this->inventory_name << "ì˜ ì¸ë²¤í† ë¦¬ì˜ ìš©ëŸ‰ì„ ì¤„ì´ë©´ ì•„ì´í…œì´ ì‚¬ë¼ì§‘ë‹ˆë‹¤. ì§„í–‰í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N): ";
                 cin >> input;
                 if (input == 'Y' || input == 'y')// reduce max capacity and remove item from inventory till it can be held
                 {
@@ -274,25 +274,25 @@ public:
                     }
                     // removing item done
 
-                    cout << this->inventory_name << "ÀÇ ÀÎº¥Åä¸®°¡ ÁÙ¾îµé¾ú½À´Ï´Ù."; PrintOutStatus();
+                    cout << this->inventory_name << "ì˜ ì¸ë²¤í† ë¦¬ê°€ ì¤„ì–´ë“¤ì—ˆìŠµë‹ˆë‹¤."; PrintOutStatus();
                     isloop = false;// leave loop
                 }
                 else if (input == 'N' || input == 'n')
                 {
-                    cout << this->inventory_name << "ÀÇ ÀÎº¥Åä¸® ¿ë·®¿¡ º¯È­°¡ ¾ø½À´Ï´Ù."; PrintOutStatus();
+                    cout << this->inventory_name << "ì˜ ì¸ë²¤í† ë¦¬ ìš©ëŸ‰ì— ë³€í™”ê°€ ì—†ìŠµë‹ˆë‹¤."; PrintOutStatus();
                     isloop = false;// leave loop
                 }
                 else
                 {
-                    cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ÁøÇàÇØÁÖ½Ê¼î." << endl;
+                    cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì§„í–‰í•´ì£¼ì‹­ì‡¼." << endl;
                 }
             }
         }
     }
 
-    void PrintOutStatus()//ÇöÀç ¿ë·®: print current_capacity/ max_capacity , ¾ÆÀÌÅÛ ¼ö: item_count
+    void PrintOutStatus()//í˜„ì¬ ìš©ëŸ‰: print current_capacity/ max_capacity , ì•„ì´í…œ ìˆ˜: item_count
     {
-        cout << " ÇöÀç ¿ë·® : " << current_capacity << " / " << max_capacity << " ¾ÆÀÌÅÛ ¼ö : " << item_count << endl;
+        cout << " í˜„ì¬ ìš©ëŸ‰ : " << current_capacity << " / " << max_capacity << " ì•„ì´í…œ ìˆ˜ : " << item_count << endl;
     }
 
     void RemoveLastItem()
@@ -304,11 +304,11 @@ public:
             T_itemsPtr.pop_back();//remove the last item
             item_count -= 1;//decrement item count
 
-            cout << this->inventory_name << "ÀÇ ¾ÆÀÌÅÛ( " << T_itemsPtr[item_count - 1]->get_Name() << " )ÀÌ Á¦°ÅµÇ¾ú½À´Ï´Ù." << endl;
+            cout << this->inventory_name << "ì˜ ì•„ì´í…œ( " << T_itemsPtr[item_count - 1]->get_Name() << " )ì´ ì œê±°ë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
         }
         else
         {
-            cout << this->inventory_name << "ÀÇ ÀÎº¥Åä¸®°¡ ºñ¾îÀÖ½À´Ï´Ù."; PrintOutStatus();
+            cout << this->inventory_name << "ì˜ ì¸ë²¤í† ë¦¬ê°€ ë¹„ì–´ìˆìŠµë‹ˆë‹¤."; PrintOutStatus();
         }
     }
 
@@ -436,14 +436,14 @@ public:
     {
         if (item_count <= 0)
         {
-            cout << this->inventory_name << "ÀÇ ÀÎº¥Åä¸®°¡ ºñ¾î ÀÖ½À´Ï´Ù." << endl;
+            cout << this->inventory_name << "ì˜ ì¸ë²¤í† ë¦¬ê°€ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤." << endl;
         }
         else
         {
             cout << "//====== "<< this->inventory_name<<" ======//" << endl;
             for (int i = 0; i < item_count; i++)
             {
-                cout << "(" << i + 1 << ") " << "ÀÌ¸§: " << this->T_itemsPtr[i]->get_Name() << " / °¡°İ: " << this->T_itemsPtr[i]->get_Price() << " / ºÎÇÇ: " << T_itemsPtr[i]->get_Volume() << endl;
+                cout << "(" << i + 1 << ") " << "ì´ë¦„: " << this->T_itemsPtr[i]->get_Name() << " / ê°€ê²©: " << this->T_itemsPtr[i]->get_Price() << " / ë¶€í”¼: " << T_itemsPtr[i]->get_Volume() << endl;
             }
             printf("\n");
             cout << "//--------------------//" << endl;
@@ -456,28 +456,28 @@ public:
 int main()
 {
     // Create inventories with different classes
-    Inventory<Potion> itemInventory(5,"Æ÷¼Ç ÀÎº¥");
-    Inventory<Weapon> weaponInventory(3,"¹«±â ÀÎº¥");
-    Inventory<Resource> resourceInventory(4,"Àç·á ÀÎº¥");
+    Inventory<Potion> itemInventory(5,"í¬ì…˜ ì¸ë²¤");
+    Inventory<Weapon> weaponInventory(3,"ë¬´ê¸° ì¸ë²¤");
+    Inventory<Resource> resourceInventory(4,"ì¬ë£Œ ì¸ë²¤");
 
     // Add Items on Item inventory
-    itemInventory.AddItem(new Potion("»¡°­ Æ÷¼Ç", 50, 1.0f));
-    itemInventory.AddItem(new Potion("ÆÄ¶û Æ÷¼Ç", 200, 2.0f));
-    itemInventory.AddItem(new Potion("³ë¶û Æ÷¼Ç", 150, 1.5f));
+    itemInventory.AddItem(new Potion("ë¹¨ê°• í¬ì…˜", 50, 1.0f));
+    itemInventory.AddItem(new Potion("íŒŒë‘ í¬ì…˜", 200, 2.0f));
+    itemInventory.AddItem(new Potion("ë…¸ë‘ í¬ì…˜", 150, 1.5f));
 
     // Add Weapons on Weapon intentory
-    weaponInventory.AddItem(new Weapon("Ã¶°Ë", 500, 5.0f, 5));
-    weaponInventory.AddItem(new Weapon("µµ³¢", 400, 6.0f, 2));
+    weaponInventory.AddItem(new Weapon("ì² ê²€", 500, 5.0f, 5));
+    weaponInventory.AddItem(new Weapon("ë„ë¼", 400, 6.0f, 2));
 
     // Add Resources on resource inventory
-    resourceInventory.AddItem(new Resource("Ã¶", 100, 3, "´Ü´ÜÇÑ Ã¶ÀÔ´Ï´Ù"));
-    resourceInventory.AddItem(new Resource("±¸¸®", 50, 2, "±¸¸®±¸¸®ÇÑ ±¸¸®"));
+    resourceInventory.AddItem(new Resource("ì² ", 100, 3, "ë‹¨ë‹¨í•œ ì² ì…ë‹ˆë‹¤"));
+    resourceInventory.AddItem(new Resource("êµ¬ë¦¬", 50, 2, "êµ¬ë¦¬êµ¬ë¦¬í•œ êµ¬ë¦¬"));
 
     // Print initial status
-    cout << "//----- ÀÎº¥ -----//" << endl;
-    cout << "Æ÷¼Ç: "; itemInventory.PrintOutStatus();
-    cout << "¹«±â: "; weaponInventory.PrintOutStatus();
-    cout << "Àç·á: "; resourceInventory.PrintOutStatus();
+    cout << "//----- ì¸ë²¤ -----//" << endl;
+    cout << "í¬ì…˜: "; itemInventory.PrintOutStatus();
+    cout << "ë¬´ê¸°: "; weaponInventory.PrintOutStatus();
+    cout << "ì¬ë£Œ: "; resourceInventory.PrintOutStatus();
 
     printf("\n\n");
 
@@ -488,7 +488,7 @@ int main()
 
     while (isrunning == true)
     {
-        cout << "ºĞ·ù±âÁØÀ» ¼±ÅÃÇÏ½Ê¼î (1) °¡°İ, (2) ºÎÇÇ, (3) ¾ËÆÄºª ¼ø :";
+        cout << "ë¶„ë¥˜ê¸°ì¤€ì„ ì„ íƒí•˜ì‹­ì‡¼ (1) ê°€ê²©, (2) ë¶€í”¼, (3) ì•ŒíŒŒë²³ ìˆœ :";
         cin >> input;
         printf("\n");
 
@@ -507,7 +507,7 @@ int main()
             isrunning = false;
             break;
         default:
-            cout << "ÀÔ·ÂÅ°°¡ º¸±â¿¡ ¾ø½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØÁÖ½Ê¼î." << endl;
+            cout << "ì…ë ¥í‚¤ê°€ ë³´ê¸°ì— ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ì£¼ì‹­ì‡¼." << endl;
             break;
         }
 
@@ -518,7 +518,7 @@ int main()
 
     while (isrunning == true)
     {
-        cout << "¼ø¼­¸¦ ¼±ÅÃÇÏ½Ê¼î.  ¿À¸§Â÷¼ø(1), ³»¸²Â÷¼ø(2) : ";
+        cout << "ìˆœì„œë¥¼ ì„ íƒí•˜ì‹­ì‡¼.  ì˜¤ë¦„ì°¨ìˆœ(1), ë‚´ë¦¼ì°¨ìˆœ(2) : ";
         cin >> input;
 
         if (input == '1')
@@ -533,7 +533,7 @@ int main()
         }
         else
         {
-            cout << "ÀÔ·ÂÅ°°¡ º¸±â¿¡ ¾ø½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØÁÖ½Ê¼î." << endl;
+            cout << "ì…ë ¥í‚¤ê°€ ë³´ê¸°ì— ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ì£¼ì‹­ì‡¼." << endl;
             break;
         }
     }
@@ -548,7 +548,7 @@ int main()
     //------ sorting done ------//
     
     // printout the result
-    cout << "//----- ºĞ·ùÈÄ ÀÎº¥ ³ª¿­ -----//" << endl;
+    cout << "//----- ë¶„ë¥˜í›„ ì¸ë²¤ ë‚˜ì—´ -----//" << endl;
 
     itemInventory.PrintAll();
     weaponInventory.PrintAll();
@@ -556,3 +556,4 @@ int main()
 
     return 0;
 }
+
